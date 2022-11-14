@@ -6,25 +6,22 @@ import com.program.InvoiceSummary;
 import com.program.Ride;
 public class InvoiceGenerator_J_UnitTest {
 	@Test
-	public void CalculateFar()  {
-		InvoiceGenerator obj=new InvoiceGenerator();
-		double test=obj.calculateFare(10, 15);
-		double test1=obj.calculateFare(10, 15)+obj.calculateFare(10, 15);;
-		Assert.assertEquals(230.0, test1, 0.0);
-	}
-	@Test
-	public void MonthFare()  {
-		InvoiceGenerator obj=new InvoiceGenerator();
-		Ride[] rides= { new Ride(1,23), new Ride(1,2)};
-		double monthfare=obj.calculateFare(rides);
-		Assert.assertEquals(45.0,monthfare , 0.0);
-		
+	public void givenUserId_shouldReturnInvoiceSummary() {
+		try {
+			String userId = "deepakpatil48@gmail.com";
+			Ride[] rides ={new Ride(2.0,5),
+					new Ride(0.1,1)};
+			InvoiceGenerator.addRides(userId,rides);
+			InvoiceSummary summary;
+
+			summary = InvoiceGenerator.calculateFare(rides, "normal");
+
+			InvoiceSummary	invoiceSummary = InvoiceGenerator.getInvoiceSummary(userId);
+			Assert.assertEquals(invoiceSummary, summary);
 		}
-	@Test
-	public void InvoiceTest() {
-		InvoiceGenerator obj=new InvoiceGenerator();
-		Ride[] rides= { new Ride(1,23), new Ride(1,2)};
-		InvoiceSummary monthfare=obj.getInvoiceSummary(rides);
-		Assert.assertNotEquals(45, monthfare);
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 	}
-	}
+}
