@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.program.InvoiceGenerator;
+import com.program.InvoiceSummary;
 import com.program.Ride;
 public class InvoiceGenerator_J_UnitTest {
 	@Test
@@ -19,4 +20,11 @@ public class InvoiceGenerator_J_UnitTest {
 		Assert.assertEquals(45.0,monthfare , 0.0);
 		
 		}
+	@Test
+	public void InvoiceTest() {
+		InvoiceGenerator obj=new InvoiceGenerator();
+		Ride[] rides= { new Ride(1,23), new Ride(1,2)};
+		InvoiceSummary monthfare=obj.getInvoiceSummary(rides);
+		Assert.assertNotEquals(45, monthfare);
+	}
 	}
